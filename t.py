@@ -42,8 +42,8 @@ def _markdown(text):
          *example*  := Bolded text
          _example_  := Underlined text
     """
-    text = re.sub(r"([^\\\\]|^)(\*)([^(\*)]*)([^\\\\])(\*)", r"\1\033[1m\3\4\033[22m", text)
-    text = re.sub(r"([^\\\\]|^)(\_)([^(\_)]*)([^\\\\])(\_)", r"\1\033[4m\3\4\033[24m", text)
+    text = re.sub(r"([^\\]|^)(\*)((.(?!(?:(?<!\\)\*)))+)([^\\])(\*)", r"\1\033[1m\3\5\033[22m", text) 
+    text = re.sub(r"([^\\]|^)(\_)((.(?!(?:(?<!\\)\_)))+)([^\\])(\_)", r"\1\033[4m\3\5\033[24m", text) 
     return text
 
 def _task_from_taskline(taskline):
